@@ -1,3 +1,5 @@
+package BasicsMaths.CountDigits.Optimal;
+
 import java.util.Scanner;
 
 public class CountDigits {
