@@ -1,9 +1,13 @@
 package Arrays.Easy.MissingNumber;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
-public class MissingNumberBrute2 {
+// Intuition:
+// We know that the summation of the first N numbers is (N*(N+1))/2. We can say this S1. Now, in the given array, every number 
+// between 1 to N except one number is present. So, if we add the numbers of the array (say S2), the difference between S1 and S2 
+// will be the missing number. Because, while adding all the numbers of the array, we did not add that particular number that is 
+// missing.
+public class MissingNumberOptimal {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
@@ -15,19 +19,14 @@ public class MissingNumberBrute2 {
     }
 
     private static int findMissingNumber(int[] a, int n) {
-        HashMap<Integer, Integer> hmap = new HashMap<>();
-
-        for(int i = 0;i < n;i++){
-            hmap.put(a[i],1);
+        int s1 = n * (n+1) / 2;
+        int s2 = 0;
+        for(int i = 0;i < a.length;i++){
+            s2 = s2 + a[i];
         }
 
-        for(int i = 1;i <= n;i++){
-            if(!hmap.containsKey(i)){
-                return i;
-            }
-        }
-
-        return 0;
+        int missingNumber = s1 - s2;
+        return missingNumber;
     }
 
     private static void takeInput(int[] a, int n) {
@@ -44,10 +43,3 @@ public class MissingNumberBrute2 {
         System.out.println();
     }
 }
-
-
-// Time Complexity: O(N) + O(N) ~ O(2*N),  where N = size of the array+1.
-// Reason: For storing the frequencies in the hash array, the program takes O(N) time complexity and for checking the 
-// frequencies in the second step again O(N) is required. So, the total time complexity is O(N) + O(N).
-
-// Space Complexity: O(N), where N = size of the array+1. Here we are using an extra hash array of size N+1.
