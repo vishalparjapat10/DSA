@@ -1,36 +1,32 @@
-package Arrays.Medium.MajorityElement;
+package Arrays.Medium.SubArraysSumK;
 
 import java.util.Scanner;
 
-public class OptimalApproach {
+public class BruteForce {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
         int a[] = new int[n];
         takeInput(a,n);
         printAraay(a,n);
-        int ans = find(a,n);
+        int k = scn.nextInt();
+        int ans = find(a,n,k);
         System.out.println(ans);
     }
 
-    private static int find(int[] a, int n) {
-        int major = a[0];
+    private static int find(int[] a, int n, int k) {
         int count = 0;
         for(int i = 0;i < n;i++){
-            if(a[i] == major){
-                count++;
-            }
-            else{
-                count--;
-            }
-
-            if(count == 0){
-                major = a[i];
-                count = 1;
+            int sum = 0;
+            for(int j = i;j < n;j++){
+                sum += a[j];
+                if(sum == k){
+                    count++;
+                }
             }
         }
 
-        return major;
+        return count;
     }
 
     private static void takeInput(int[] a, int n) {
@@ -46,5 +42,4 @@ public class OptimalApproach {
         }
         System.out.println();
     }
-
 }
