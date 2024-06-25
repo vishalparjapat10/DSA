@@ -1,8 +1,8 @@
-package Arrays.Medium.MajorityElement;
+package Arrays.Medium.BuyAndSellStocks;
 
 import java.util.Scanner;
 
-public class OptimalApproach {
+public class Optimal {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
@@ -14,23 +14,14 @@ public class OptimalApproach {
     }
 
     private static int find(int[] a, int n) {
-        int major = a[0];
-        int count = 1;
-        for(int i = 1;i < n;i++){
-            if(a[i] == major){
-                count++;
-            }
-            else{
-                count--;
-            }
-
-            if(count == 0){
-                major = a[i];
-                count = 1;
-            }
+        int minPrice = Integer.MAX_VALUE;
+        int maxPro = 0;
+        for(int i = 0;i < n;i++){
+            minPrice = Math.min(minPrice,a[i]);
+            maxPro = Math.max(maxPro,a[i] - minPrice);
         }
 
-        return major;
+        return maxPro;
     }
 
     private static void takeInput(int[] a, int n) {
@@ -46,5 +37,4 @@ public class OptimalApproach {
         }
         System.out.println();
     }
-
 }

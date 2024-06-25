@@ -26,9 +26,10 @@ public class UnionOptimal {
         int j = 0;
         ArrayList<Integer> Union = new ArrayList<>();
         while(i < n1 && j < n2){
-            if(a1[i] <= a2[j]){
-                if(Union.size() == 0 || Union.get(Union.size()-1) != a1[i])
+            if (a1[i] <= a2[j]){
+                if(Union.size() == 0 || Union.get(Union.size()-1) != a1[i]){
                     Union.add(a1[i]);
+                }
                 i++;
             }
             else{
@@ -39,9 +40,10 @@ public class UnionOptimal {
         }
 
         while(i < n1){
-            if(Union.size() == 0 || Union.get(Union.size()-1) != a1[i])
-                Union.add(a1[i]);
-            i++;
+                if(Union.size() == 0 || Union.get(Union.size()-1) != a1[i]){
+                    Union.add(a1[i]);
+                }
+                i++;
         }
 
         while(j < n2){

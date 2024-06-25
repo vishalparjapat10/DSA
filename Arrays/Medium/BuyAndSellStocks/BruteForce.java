@@ -1,36 +1,29 @@
-package Arrays.Medium.MajorityElement;
+package Arrays.Medium.BuyAndSellStocks;
 
 import java.util.Scanner;
 
-public class OptimalApproach {
-    public static void main(String[] args) {
+public class BruteForce {
+      public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
         int a[] = new int[n];
         takeInput(a,n);
         printAraay(a,n);
-        int ans = find(a,n);
+        int ans = find(a);
         System.out.println(ans);
     }
 
-    private static int find(int[] a, int n) {
-        int major = a[0];
-        int count = 1;
-        for(int i = 1;i < n;i++){
-            if(a[i] == major){
-                count++;
-            }
-            else{
-                count--;
-            }
-
-            if(count == 0){
-                major = a[i];
-                count = 1;
+    private static int find(int[] a) {
+        int maxPro = 0;
+        for(int i = 0;i < a.length;i++){
+            for(int j = i+1;j < a.length;j++){
+                if(a[j] > a[i]){
+                    maxPro = Math.max(a[j] - a[i],maxPro);
+                }
             }
         }
 
-        return major;
+        return maxPro;
     }
 
     private static void takeInput(int[] a, int n) {
@@ -46,5 +39,9 @@ public class OptimalApproach {
         }
         System.out.println();
     }
-
 }
+
+
+// Time complexity: O(n^2)
+
+// Space Complexity: O(1)
